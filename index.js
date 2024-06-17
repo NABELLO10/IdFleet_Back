@@ -22,7 +22,6 @@ const app = express();
 //le decimos que enviaremos datos de tipo json
 app.use(express.json());
 
-
 //busca y agrega el archivo .env
 dotenv.config();
 
@@ -56,6 +55,7 @@ app.use("/api-idfleet/general/", generalRoutes);
 
 
 //PUERTOS
+
 const PORT = process.env.PORT || 4001;
 app.listen(PORT, () => {
   console.log(`Servidor en puerto ${PORT}`);
