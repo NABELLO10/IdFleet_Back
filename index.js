@@ -48,14 +48,16 @@ exportarModelos();
   };
   app.use(cors(corsOptions));   
  
-  
+
   //ROUTES
 app.use('/api-idfleet/', loginRoutes)
 app.use("/api-idfleet/crud/", crudRoutes);
 app.use("/api-idfleet/general/", generalRoutes);
+
 
 //PUERTOS
 const PORT = process.env.PORT || 4001;
 app.listen(PORT, () => {
   console.log(`Servidor en puerto ${PORT}`);
 });
+
