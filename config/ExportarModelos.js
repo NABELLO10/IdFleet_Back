@@ -21,15 +21,14 @@ import ResumenTablet from "../models/ResumenTablet.js"
 import UnidadesWialon from "../models/UnidadesWialon.js"
 import SesionConductores from "../models/SesionConductores.js"
 import GPSTablet from "../models/GPSTablet.js"
-
+import TipoMantenciones from "../models/TipoMantenciones.js"
+import Mantenciones from "../models/Mantenciones.js"
 import OxSchool from "../models/OxSchool.js";
-
-
 import CorreosNotificacion from "../models/CorreosNotificacion.js"
 
 const exportarModelos = () =>{
 Log, Pais, Region,Provincias,Ciudades,Perfiles,Empresas,Usuarios, EmpresasSistema, TipoNotificacion, Transportistas, CorreosNotificacion,Camiones,Arrastres,Token, Sensores, 
-LogSensores, CatNotificacion, ResumenGPS, OxSchool, Conductores, UnidadesWialon, ResumenTablet, SesionConductores, GPSTablet
+LogSensores, CatNotificacion, ResumenGPS, OxSchool, Conductores, UnidadesWialon, ResumenTablet, SesionConductores, GPSTablet, TipoMantenciones, Mantenciones
 }
 
 export default exportarModelos

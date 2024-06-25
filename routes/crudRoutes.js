@@ -85,6 +85,13 @@ import {
     eliminarCat,
     obtenerCat } from "../controllers/mantenedores/catNotificacionesController.js";
 
+// MANTENCIONES ------------------------------------------------------------------------//
+import { 
+    registrarMantencion,
+    editarMantencion,
+    obtenerMantenciones,
+    eliminarMantencion} from "../controllers/mantenedores/mantenciones.js";
+
     
 const router = express.Router()
 
@@ -162,6 +169,12 @@ router.post("/cat-not", checkAuth, registrarCat)
 router.put("/cat-not/:id", checkAuth, editarCat)
 router.delete("/cat-not/:id", checkAuth, eliminarCat)
 router.get('/cat-not/:id_empresa', checkAuth, obtenerCat) 
+
+// CAT NOTIFICACION ------------------------------------------------------------------------//
+router.post("/mantencion", checkAuth, registrarMantencion)
+router.put("/mantencion/:id", checkAuth, editarMantencion)
+router.delete("/mantencion/:id", checkAuth, eliminarMantencion)
+router.get('/mantenciones/:equipo', checkAuth,obtenerMantenciones ) 
 
 
 export default router
