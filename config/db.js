@@ -1,4 +1,4 @@
-/* import { Sequelize } from "sequelize";
+ /*import { Sequelize } from "sequelize";
 
 const db = new Sequelize('IdFleetDB', 'sa', '123456', {
     dialect: 'mssql',
