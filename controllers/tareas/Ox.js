@@ -2,6 +2,7 @@
 import Sensores from "../../models/Sensores.js";
 import ResumenGPS from "../../models/ResumenGPS.js";
 import Camiones from "../../models/Camiones.js";
+import Arrastres from "../../models/Arrastres.js";
 import Token from "../../models/Token.js";
 import cron from "node-cron";
 import { exec } from "child_process"; // Asegúrate de importar exec si no lo has hecho
@@ -30,7 +31,7 @@ const registrarSensor = async () => {
     },
   });
 
-  const wialonCamiones = await Camiones.findAll({
+  const wialonArrastres = await Arrastres.findAll({
     where: {
       est_activo: 1,
       id_wialon: {
@@ -39,7 +40,7 @@ const registrarSensor = async () => {
     },
   });
 
-  const idWialonArray = wialonCamiones
+  const idWialonArray = wialonArrastres
     .filter((r) => r.est_ox == 1 || r.est_temp == 1)
     .reduce((accumulator, camion) => {
       // Verifica si el camión actual ya está en el acumulador basándose en idWi
@@ -55,11 +56,14 @@ const registrarSensor = async () => {
           idWi: camion.id_wialon,
           idTra: camion.id_transportista,
           idEmp: camion.id_empresa,
-          fecGPS: camion.fecGPS,
+
         });
       }
       return accumulator;
     }, []); // Inicia con un array vacío como acumulador
+
+
+
 
   //DATOS OX y TEMP
   if (idWialonArray.length > 0) {
@@ -74,11 +78,9 @@ const registrarSensor = async () => {
     } catch (error) {
       console.error(`exec error: ${error}`);
       return;
-    }
-   
+    }  
 
     arraySensores.map(async (r) => {
-
       let valor13 = r.Valores[15] ? r.Valores[15].toString() : "";
       let valor14 = r.Valores[14] ? r.Valores[14].toString() : "";
       let valor15 = r.Valores[13] ? r.Valores[13].toString() : "";
@@ -113,7 +115,7 @@ const registrarSensor = async () => {
         fec_gps: moment(r.FechaGPS).format("YYYY-MM-DD"),
       });
 
-      const camionOX = await Camiones.findAll({
+      const arrastreOX = await Arrastres.findAll({
         where: { id_wialon: r.idWialon, est_activo: 1 },
       });
 
@@ -147,8 +149,8 @@ const registrarSensor = async () => {
             ox12: r.Valores[12],
             fecha: fechaConcatenada, 
             fechaRegistro: new Date(),
-            est_ox: camionOX[0].dataValues.est_ox,
-            est_temp: camionOX[0].dataValues.est_temp,
+            est_ox: arrastreOX[0].dataValues.est_ox,
+            est_temp: arrastreOX[0].dataValues.est_temp,
           },
           {
             where: {
@@ -180,8 +182,8 @@ const registrarSensor = async () => {
           ox12: r.Valores[12],
           fecha: fechaConcatenada, 
           fechaRegistro: new Date(),
-          est_ox: camionOX[0].dataValues.est_ox,
-          est_temp: camionOX[0].dataValues.est_temp,
+          est_ox: arrastreOX[0].dataValues.est_ox,
+          est_temp: arrastreOX[0].dataValues.est_temp,
         });
       }
     });
@@ -310,7 +312,7 @@ cron.schedule("*/5 * * * *", () => {
 });
 
 /* 
-  const idWialonArrayGral = wialonCamiones
+  const idWialonArrayGral = wialonArrastres
     .filter((r) => r.est_ox == 0 && r.est_temp == 0)
     .map((camion) => camion.id_wialon);
  */

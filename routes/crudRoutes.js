@@ -46,6 +46,13 @@ editarConductor,
 eliminarConductor,
 obtenerConductores } from "../controllers/mantenedores/conductoresController.js";
 
+//TIPO ARRASTRES ------------------------------------------------------------------------//
+import { 
+    registrarTipoArrastre,
+    editarTipoArrastre,
+    obtenerTiposArrastre,
+    eliminarTipoArrastre } from "../controllers/mantenedores/tipoArrastreController.js";
+
 // ARRASTRES ------------------------------------------------------------------------//
 import { 
 registrarArrastres,
@@ -90,7 +97,34 @@ import {
     registrarMantencion,
     editarMantencion,
     obtenerMantenciones,
-    eliminarMantencion} from "../controllers/mantenedores/mantenciones.js";
+    eliminarMantencion} from "../controllers/mantenedores/mantencionesController.js.js";
+    
+//DOCTOS VIAJES ------------------------------------------------------------------------//
+import { 
+    registrarDoctoViaje,
+    editarDoctoViaje,
+    obtenerDoctoViaje,
+    elmininarDoctoViaje,
+ } from "../controllers/mantenedores/doctosViajesController.js";
+
+    
+
+// LUGARES   ------------------------------------------------------------------------//
+import { 
+    registrarLugar,
+    editarLugar,
+    obtenerLugar,
+    eliminarLugar
+} from "../controllers/mantenedores/lugaresController.js";
+
+// ESTADO VIAJES ------------------------------------------------------------------------//
+import { 
+    registrarEstado,
+    editarEstado,
+    obtenerEstado,
+    eliminarEstado
+} from "../controllers/mantenedores/estadoViajeController.js";
+
 
     
 const router = express.Router()
@@ -133,21 +167,28 @@ router.get('/obtener-transportistas1/:id_empresa', checkAuth, obtenerTransportis
 router.post("/conductor", checkAuth, registrarConductor)
 router.put("/conductor/:id", checkAuth, editarConductor)
 router.delete("/conductor/:id", checkAuth, eliminarConductor)
-router.get('/obtener-conductores/:id_empresa/:id_empresa_global', checkAuth, obtenerConductores) 
+router.get('/obtener-conductores/:id_transportista', checkAuth, obtenerConductores) 
 
+
+// TIPO ARRASTRES ------------------------------------------------------------------------//
+router.post("/TiposArrastre", checkAuth, registrarTipoArrastre)
+router.put("/TiposArrastre/:id", checkAuth, editarTipoArrastre)
+router.delete("/TiposArrastre/:id", checkAuth, eliminarTipoArrastre)
+router.get('/obtenerTiposArrastre', checkAuth, obtenerTiposArrastre) 
 
 // ARRASTRES ------------------------------------------------------------------------//
 router.post("/registrarArrastre", checkAuth, registrarArrastres)
 router.put("/arrastre/:id", checkAuth, editarArrastre)
 router.delete("/arrastre/:id", checkAuth, eliminarArrastre)
-router.get('/obtener-arrastres/:id_empresa/:id_empresa_global', checkAuth, obtenerArrastres) 
+router.get('/obtener-arrastres/:id_transportista', checkAuth, obtenerArrastres) 
 router.get('/obtener-todosarrastres/:id_empresa', checkAuth, obtenerTodosArrastres) 
+router.get('/obtenerTiposArrastre', checkAuth, obtenerTiposArrastre) 
 
 // CAMIONES ------------------------------------------------------------------------//
 router.post("/camion", checkAuth, registrarCamion)
 router.put("/camion/:id", checkAuth, editarCamion)
 router.delete("/camion/:id", checkAuth, eliminarCamion)
-router.get('/obtener-camiones/:id_empresa/:id_empresa_global', checkAuth, obtenerCamiones) 
+router.get('/obtener-camiones/:id_transportista', checkAuth, obtenerCamiones) 
 router.get('/unidades-wialon', checkAuth, obtenerUnidadesWialon) 
 router.get('/obtener-todoscamiones/:id_empresa/:id_empresa_global', checkAuth, obtenerTodosCamiones) 
 
@@ -175,6 +216,27 @@ router.post("/mantencion", checkAuth, registrarMantencion)
 router.put("/mantencion/:id", checkAuth, editarMantencion)
 router.delete("/mantencion/:id", checkAuth, eliminarMantencion)
 router.get('/mantenciones/:equipo', checkAuth,obtenerMantenciones ) 
+
+// DOCTOS VIAJES ------------------------------------------------------------------------//
+router.post("/doctosViajes", checkAuth, registrarDoctoViaje)
+router.put("/doctosViajes/:id", checkAuth, editarDoctoViaje)
+router.delete("/doctosViajes/:id", checkAuth, elmininarDoctoViaje)
+router.get('/doctosViajes/:id_viaje', checkAuth,obtenerDoctoViaje ) 
+
+
+// LUGARES ------------------------------------------------------------------------//
+router.post("/lugar", checkAuth, registrarLugar)
+router.put("/lugar/:id", checkAuth, editarLugar)
+router.delete("/lugar/:id", checkAuth, eliminarLugar)
+router.get('/lugar/:id_empresa', checkAuth,obtenerLugar ) 
+
+// ESTADO VIAJES ------------------------------------------------------------------------//
+router.post("/estadoViaje", checkAuth, registrarEstado)
+router.put("/estadoViaje/:id", checkAuth, editarEstado)
+router.delete("/estadoViaje/:id", checkAuth, eliminarEstado)
+router.get('/estadoViaje/:id_empresa', checkAuth,obtenerEstado) 
+
+
 
 
 export default router

@@ -7,6 +7,9 @@ import LogSensores from "../models/LogSensores.js"
 import SesionConductores from "../models/SesionConductores.js"
 import GPSTablet from "../models/GPSTablet.js"
 import OxSchool from "../models/OxSchool.js"
+import UsuariosEmpresas from "../models/UsuariosEmpresas.js"
+import Usuarios from "../models/Usuarios.js"
+import EmpresasSistema from "../models/EmpresasSistema.js"
 import { Op } from "sequelize"
 import moment from "moment";
 
@@ -336,6 +339,7 @@ const inicioConductor = async (req, res) => {
   }      
 }
 
+
 const obtenerConductorActivo = async (req, res) => {
   const { patente, rut } = req.params;
   try {
@@ -366,6 +370,40 @@ const enviarGPS = async (req, res) => {
 }
 
 
+const obtenerEmpresaUsuario = async (req, res) => {
+  try {
+    const { id_usuario } = req.params;
+    const resultado = await UsuariosEmpresas.findAll({
+      where: {
+        id_usuario,
+      },
+      include: [{ model: Usuarios }, { model: EmpresasSistema }],
+    });
+
+    return res.status(200).json(resultado);
+
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+const obtenerUsuarioEmpresas = async (req, res) => {
+  try {
+    const { id_usuario } = req.params;
+    const resultado = await UsuariosEmpresas.findAll({
+      where: {
+        id_usuario,
+      },
+      include: [{ model: Usuarios }, { model: EmpresasSistema }],
+    });
+  
+    return res.status(200).json(resultado);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 
 export {
     obtenerCiudades,
@@ -385,5 +423,7 @@ export {
     obtenerConductorActivo,
     enviarGPS,
     obtenerDatosTabletFechas,
-    obtenerLogTablet
+    obtenerLogTablet,
+    obtenerEmpresaUsuario,
+    obtenerUsuarioEmpresas
 }

@@ -1,6 +1,7 @@
 import { Sequelize } from "sequelize";
 import db from "../config/db.js";
 import EmpresasSistema from "./EmpresasSistema.js";
+import Transportistas from "./Transportistas.js";
 
 
 const Conductores = db.define('mae_conductores', {
@@ -39,6 +40,10 @@ const Conductores = db.define('mae_conductores', {
     id_empresa:{
         type: Sequelize.INTEGER
     },
+
+    id_transportista:{
+        type: Sequelize.INTEGER
+    },
     
     id_empresa_global:{
         type: Sequelize.INTEGER
@@ -50,5 +55,6 @@ const Conductores = db.define('mae_conductores', {
 })
 
 Conductores.belongsTo(EmpresasSistema, {foreignKey : "id_empresa"})
+Conductores.belongsTo(Transportistas, {foreignKey : "id_transportista"})
 
 export default Conductores

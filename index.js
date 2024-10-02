@@ -10,11 +10,15 @@ import exportarModelos from "./config/ExportarModelos.js";
 import loginRoutes from "./routes/loginRoutes.js"
 import crudRoutes from "./routes/crudRoutes.js"
 import generalRoutes from "./routes/generalRoutes.js"
+import procesosRoutes from "./routes/procesosRoutes.js"
  
 //Tareas programdas
-import "./controllers/tareas/Ox.js";   
-import "./controllers/tareas/logTablet.js";   
-import './controllers/tareas/obtenerUnidadesWialon.js'     
+// import "./controllers/tareas/Ox.js";   
+// import "./controllers/tareas/logTablet.js";   
+// import './controllers/tareas/obtenerUnidadesWialon.js'  
+   
+ import './controllers/tareas/obtenerGps.js'     
+
 
 //aqui se crea la aplicacion de express
 const app = express();
@@ -24,7 +28,6 @@ app.use(express.json());
 
 //busca y agrega el archivo .env
 dotenv.config();
-
 
 //Veriricando modelos al inciar si no existe los crea
 exportarModelos();
@@ -52,6 +55,7 @@ exportarModelos();
 app.use('/api-idfleet/', loginRoutes)
 app.use("/api-idfleet/crud/", crudRoutes);
 app.use("/api-idfleet/general/", generalRoutes);
+app.use("/api-idfleet/procesos/", procesosRoutes);
 
 
 //PUERTOS

@@ -5,14 +5,14 @@ import emailRegistro from "../../helpers/emailRegistro.js"
 import Usuarios from "../../models/Usuarios.js"
 
 const registrarConductor = async (req, res) => {
-    const {rut, nombre, ape_paterno, ape_materno, fono, email, est_activo, id_empresa, id_empresa_global} = req.body
+    const {rut, nombre, ape_paterno, ape_materno, fono, email, est_activo, id_empresa, id_empresa_global, id_transportista} = req.body
 
     try {  
         const existe = await Conductores.findOne({
             attributes: ['rut'],
             where:{
-                rut,
-                id_empresa
+                rut,                
+                id_transportista
             }
         }) 
 
@@ -22,7 +22,7 @@ const registrarConductor = async (req, res) => {
         }
                          
         await Conductores.create({
-            rut, nombre, ape_paterno, ape_materno, fono, email, est_activo, id_empresa, id_empresa_global
+            rut, nombre, ape_paterno, ape_materno, fono, email, est_activo, id_empresa, id_empresa_global, id_transportista
         })      
 
       /*   const nuevoUsuario = await Usuarios.create({
@@ -52,12 +52,12 @@ const registrarConductor = async (req, res) => {
 
 const editarConductor =  async (req, res) =>{
     const {id} = req.params
-    const {rut, nombre, ape_paterno, ape_materno, fono, email, est_activo, id_empresa, } = req.body
+    const {rut, nombre, ape_paterno, ape_materno, fono, email, est_activo, id_empresa, id_transportista } = req.body
 
     try {
      
         await Conductores.update({
-            rut, nombre, ape_paterno, ape_materno, fono, email, est_activo, id_empresa
+            rut, nombre, ape_paterno, ape_materno, fono, email, est_activo, id_empresa, id_transportista
         },{
             where:{
                 id : id
@@ -90,14 +90,14 @@ const eliminarConductor = async (req, res) =>{
 
 
 const obtenerConductores = async (req, res) => {
-    const {id_empresa, id_empresa_global} = req.params
+    const {id_transportista} = req.params
     try {
-        const tra = await Conductores.findAll({
-            attributes: ['id', 'rut', 'nombre','ape_paterno', 'ape_materno', 'fono', 'email', 'est_activo', 'id_empresa'],
+        const tra = await Conductores.findAll({            
             where:{
-                id_empresa, id_empresa_global
+                id_transportista
             }
         })
+
         return res.status(200).json(tra)        
     } catch (error) {
         console.log(error)

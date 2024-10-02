@@ -25,10 +25,23 @@ import TipoMantenciones from "../models/TipoMantenciones.js"
 import Mantenciones from "../models/Mantenciones.js"
 import OxSchool from "../models/OxSchool.js";
 import CorreosNotificacion from "../models/CorreosNotificacion.js"
+import UsuariosEmpresas from "../models/UsuariosEmpresas.js"
+import TipoArrastre from "../models/TipoArrastre.js"
+import TipoVehiculo from "../models/TipoVehiculo.js"
+import MovGPS from "../models/MovGPS.js"
+import DoctosViajes from "../models/DoctosViajes.js"
+import EstadoViajes from "../models/EstadoViajes.js"
+
+
+//Viaje
+import Lugares from "../models/Lugares.js"
+import Viajes from "../models/Viajes.js"
+import DetViajes from "../models/DetViajes.js"
 
 const exportarModelos = () =>{
 Log, Pais, Region,Provincias,Ciudades,Perfiles,Empresas,Usuarios, EmpresasSistema, TipoNotificacion, Transportistas, CorreosNotificacion,Camiones,Arrastres,Token, Sensores, 
-LogSensores, CatNotificacion, ResumenGPS, OxSchool, Conductores, UnidadesWialon, ResumenTablet, SesionConductores, GPSTablet, TipoMantenciones, Mantenciones
+LogSensores, CatNotificacion, ResumenGPS, OxSchool, Conductores, UnidadesWialon, ResumenTablet, SesionConductores, GPSTablet, TipoMantenciones, Mantenciones, UsuariosEmpresas, TipoArrastre, TipoVehiculo,MovGPS, EstadoViajes,
+Lugares, Viajes, DetViajes, DoctosViajes
 }
 
 export default exportarModelos

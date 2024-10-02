@@ -21,9 +21,22 @@ import {
         obtenerConductorActivo,
         enviarGPS,
         obtenerDatosTabletFechas,
-        obtenerLogTablet
+        obtenerLogTablet,
+        obtenerEmpresaUsuario,
+        obtenerUsuarioEmpresas
              } from "../controllers/generalController.js";
 
+
+//Dashboard
+
+import {       
+        obtenerTotalCamiones,
+        obtenerTotalArrastres,
+        obtenerTotalArrastresOX,
+        obtenerTotalArrastresTemp,
+        obtenerTotalCamionesADAM,
+        obtenerMovGPS
+             } from "../controllers/reportes/Dashboard.js";
 
 const router = express.Router()
 
@@ -52,6 +65,16 @@ router.post('/inicioConductor',  inicioConductor)
 router.get('/obtenerConductorActivo/:patente/:rut',  obtenerConductorActivo)
 router.post('/enviarGPS',  enviarGPS)
 
+router.get('/empresa_usuarios/:id_usuario', checkAuth, obtenerEmpresaUsuario)
+router.get('/usuarios_empresas/:id_usuario', checkAuth, obtenerUsuarioEmpresas)
+
+//Dashboard
+router.get('/obtenerTotalCamiones/:id_transportista', checkAuth, obtenerTotalCamiones)
+router.get('/obtenerTotalArrastres/:id_transportista', checkAuth, obtenerTotalArrastres)
+router.get('/obtenerTotalArrastresOX/:id_transportista', checkAuth, obtenerTotalArrastresOX)
+router.get('/obtenerTotalArrastresTemp/:id_transportista', checkAuth, obtenerTotalArrastresTemp)
+router.get('/obtenerTotalCamionesADAM/:id_transportista', checkAuth, obtenerTotalCamionesADAM)
+router.get('/obtenerMovGPS/:id_transportista', checkAuth, obtenerMovGPS)
 
 
 export default router

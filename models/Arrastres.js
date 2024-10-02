@@ -3,6 +3,7 @@ import db from "../config/db.js";
 
 import Transportista from "./Transportistas.js";
 import EmpresasSistema from "./EmpresasSistema.js";
+import TipoArrastre from "./TipoArrastre.js";
 
 
 const Arrastres = db.define('mae_arrastres', {
@@ -14,6 +15,12 @@ const Arrastres = db.define('mae_arrastres', {
     id_transportista:{
         type: Sequelize.INTEGER
     },   
+    id_tipo_arrastre:{
+        type: Sequelize.INTEGER
+    },  
+    id_wialon:{
+        type: Sequelize.INTEGER
+    },  
     nom_patente:{
         type: Sequelize.STRING
     }, 
@@ -28,22 +35,20 @@ const Arrastres = db.define('mae_arrastres', {
     },  
     est_activo:{
         type: Sequelize.INTEGER
-    },    
-    lat_actual:{
-        type: Sequelize.FLOAT
-    },    
-    lon_actual:{
-        type: Sequelize.FLOAT
-    },    
+    }, 
+    est_ox:{
+        type: Sequelize.INTEGER
+    }, 
+    est_temp:{
+        type: Sequelize.INTEGER
+    },        
     id_empresa:{
         type: Sequelize.INTEGER
     },
     id_empresa_global:{
         type: Sequelize.INTEGER
     },
-    est_asignado:{
-        type: Sequelize.INTEGER
-    },    
+  
 },
 {
     timestamps: false,
@@ -52,5 +57,6 @@ const Arrastres = db.define('mae_arrastres', {
 
 Arrastres.belongsTo(Transportista, {foreignKey : "id_transportista"})
 Arrastres.belongsTo(EmpresasSistema, {foreignKey : "id_empresa"})
+Arrastres.belongsTo(TipoArrastre, {foreignKey : "id_tipo_arrastre"})
 
 export default Arrastres;

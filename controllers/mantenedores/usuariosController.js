@@ -5,11 +5,12 @@ import Usuarios from "../../models/Usuarios.js"
 import Perfiles from "../../models/Perfiles.js"
 import Empresas from "../../models/Empresas.js" 
 import EmpresasSistema from "../../models/EmpresasSistema.js"
+import UsuariosEmpresas from "../../models/UsuariosEmpresas.js"
 import Ciudades from "../../models/Ciudades.js"
 
 
 const registrar = async (req,res) => {          
-    const {nombre, id_empresa, email, id_perfil, est_activo, user_add, password} = req.body
+    const {nombre, id_empresa, email, id_perfil, est_activo, user_add, password, empresas} = req.body
 
     try {
         const existeUsuario = await Usuarios.findOne({
@@ -37,6 +38,15 @@ const registrar = async (req,res) => {
             user_add : user_add
         })      
 
+
+        empresas.map( async (t) => {
+            await UsuariosEmpresas.create({
+                id_usuario : nuevoUsuario.id,
+                id_empresa : t
+            })      
+        })     
+
+
         emailRegistro({
             nombre,
             email,
@@ -54,7 +64,7 @@ const registrar = async (req,res) => {
 const actualizarUsuario = async (req, res) =>{
 
     const {id} = req.params
-    const {nombre, id_empresa, email, id_perfil, est_activo } = req.body
+    const {nombre, id_empresa, email, id_perfil, est_activo, empresas } = req.body
    
     try {
         
@@ -93,6 +103,22 @@ const actualizarUsuario = async (req, res) =>{
                 id : id
             }
         })
+        
+        if(empresas){
+            await UsuariosEmpresas.destroy({
+                where:{
+                    id_usuario : id
+                }
+            })
+
+            empresas.map( async (t) => {      
+                await UsuariosEmpresas.create({
+                    id_usuario : id,
+                    id_empresa : t
+                })      
+            })     
+           
+        }     
 
         res.status(200).json({msg: "Usuario actualizado"})
         
