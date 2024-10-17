@@ -17,6 +17,7 @@ import procesosRoutes from "./routes/procesosRoutes.js"
 // import "./controllers/tareas/logTablet.js";   
 // import './controllers/tareas/obtenerUnidadesWialon.js'  
    
+
  import './controllers/tareas/obtenerGps.js'     
 
 
