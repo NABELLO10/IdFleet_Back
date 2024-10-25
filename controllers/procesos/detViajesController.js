@@ -11,7 +11,7 @@ const registrarDetViaje = async (req, res) => {
     try {  
                                 
         await DetViajes.create({
-            id_viaje, id_origen, id_destino, fec_llegada,hora_llegada, fec_salida , hora_salida, est_viaje        
+            id_viaje, id_origen, id_destino, fec_llegada,hora_llegada, fec_salida , hora_salida, est_viaje : 1        
         })      
       
         res.status(200).json({msg: "Detalle Registrado"})
