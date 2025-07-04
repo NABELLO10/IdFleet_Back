@@ -30,6 +30,7 @@ const registrarUnidades = async () => {
     console.error(`exec error: ${error}`);
     return;
   }
+
   
 
   arrayResultado.map(async (r) => {
@@ -70,7 +71,7 @@ const registrarUnidades = async () => {
 };
 
 // cada 15 minutos
-cron.schedule("*/10 * * * *", () => {
+cron.schedule("*/8 * * * *", () => {
   console.log("Tarea obtener unidades siendo ejecutada...");
   registrarUnidades();
 });

@@ -7,7 +7,7 @@ const TipoVehiculo = db.define('mae_tipo_vehiculos', {
         primaryKey:true, 
         autoIncrement:true
     },   
-    nom_tipo_vehiculo:{
+    nom_tipo:{
         type: Sequelize.STRING(100)
     },    
     id_empresa:{

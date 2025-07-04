@@ -27,6 +27,8 @@ const listarUnidadesPY = async (req, res) => {
              
             }       
             return res.status(200).send(resultado)          
+
+            console.log(resultado)
         });
     } catch (error) {
         return res.status(400).send(error)  

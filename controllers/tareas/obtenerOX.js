@@ -240,7 +240,7 @@ const registrarSensor = async () => {
 };
 
 // Programa la tarea para que se ejecute, por ejemplo, cada 3 minutos
-cron.schedule("*/1 * * * *", () => {
+cron.schedule("*/5 * * * *", () => {
   console.log("Tarea programada OBTENER OX siendo ejecutada...");
   registrarSensor();
 

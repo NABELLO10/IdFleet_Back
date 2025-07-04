@@ -44,7 +44,7 @@ const registrar = async (req,res) => {
                 id_usuario : nuevoUsuario.id,
                 id_empresa : t
             })      
-        })     
+        })      
 
 
         emailRegistro({
@@ -91,7 +91,6 @@ const actualizarUsuario = async (req, res) =>{
             }
         }
               
-
         await Usuarios.update({
             nom_usuario : nombre,
             id_empresa,
@@ -103,23 +102,22 @@ const actualizarUsuario = async (req, res) =>{
                 id : id
             }
         })
-        
-        if(empresas){
-            await UsuariosEmpresas.destroy({
+
+        if(empresas.length> 0){           
+             await UsuariosEmpresas.destroy({
                 where:{
                     id_usuario : id
                 }
             })
 
-            empresas.map( async (t) => {      
-                await UsuariosEmpresas.create({
+            empresas.map(async (t) => {     
+                 await UsuariosEmpresas.create({
                     id_usuario : id,
                     id_empresa : t
-                })      
-            })     
-           
-        }     
-
+                })     
+            })      
+        }       
+       
         res.status(200).json({msg: "Usuario actualizado"})
         
     } catch (error) {

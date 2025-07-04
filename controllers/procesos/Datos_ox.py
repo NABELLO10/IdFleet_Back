@@ -15,11 +15,10 @@ def main():
         #EndPoint API REST para traer datos de unidad (Patente) 
         urlUnidad = 'https://hst-api.wialon.com/wialon/ajax.html?svc=core/search_item'
 
-
         responseToken = requests.get(urlInicio, params=argumentosInicio)
 
         #Oxigenacion: 19651908 y 20628728
-        unidades= 20628728   #26297155  #25777570 #22486109
+        unidades= 29406756   #26297155  #25777570 #22486109
         
         #if responseToken.status_code == 200:
         #print(responseToken.content) #Imprime en terminal el JSON de respuesta, solo sirve para validar que responda bien y no tenga errores

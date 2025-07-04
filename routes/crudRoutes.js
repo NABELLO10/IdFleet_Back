@@ -125,6 +125,12 @@ import {
     eliminarEstado
 } from "../controllers/mantenedores/estadoViajeController.js";
 
+//TIPO VEHICULOS ------------------------------------------------------------------------//
+import { 
+    registrarTipoVehiculo,
+    editarTipoVehiculo,
+    obtenerTipoVehiculo,
+    eliminartipoVehiculo } from "../controllers/mantenedores/tipoVehiculosController.js";
 
     
 const router = express.Router()
@@ -237,6 +243,10 @@ router.delete("/estadoViaje/:id", checkAuth, eliminarEstado)
 router.get('/estadoViaje/:id_empresa', checkAuth,obtenerEstado) 
 
 
-
+// TIPO VEHICULOS ------------------------------------------------------------------------//
+router.post("/tipoVehiculo", checkAuth, registrarTipoVehiculo)
+router.put("/tipoVehiculo/:id", checkAuth, editarTipoVehiculo)
+router.delete("/tipoVehiculo/:id", checkAuth, eliminartipoVehiculo)
+router.get('/obtenerTipoVehiculo', checkAuth, obtenerTipoVehiculo) 
 
 export default router

@@ -13,12 +13,10 @@ import generalRoutes from "./routes/generalRoutes.js"
 import procesosRoutes from "./routes/procesosRoutes.js"
  
 //Tareas programdas
-// import "./controllers/tareas/Ox.js";   
-// import "./controllers/tareas/logTablet.js";   
-// import './controllers/tareas/obtenerUnidadesWialon.js'  
-   
-
- import './controllers/tareas/obtenerGps.js'     
+import "./controllers/tareas/Ox.js";   
+//import "./controllers/tareas/logTablet.js";   
+import './controllers/tareas/obtenerUnidadesWialon.js'  
+import './controllers/tareas/obtenerGps.js'     
 
 
 //aqui se crea la aplicacion de express

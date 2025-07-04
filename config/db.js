@@ -1,4 +1,4 @@
-  //import { Sequelize } from "sequelize";
+//import { Sequelize } from "sequelize";
 
 /* const db = new Sequelize('IdFleetDB', 'sa', '123456', {
     dialect: 'mssql',
@@ -8,10 +8,10 @@
      timezone: '-03:00'
   })
 
-export default db  */
+export default db   */
 
- 
- import { Sequelize } from "sequelize";
+
+import { Sequelize } from "sequelize";
 
 const db = new Sequelize('IdFleetDB', 'userIdFleet', 'IdF.2023', {
     dialect: 'mssql',
@@ -21,4 +21,4 @@ const db = new Sequelize('IdFleetDB', 'userIdFleet', 'IdF.2023', {
      timezone: '-03:00'
   })
 
-export default db 
+export default db  
